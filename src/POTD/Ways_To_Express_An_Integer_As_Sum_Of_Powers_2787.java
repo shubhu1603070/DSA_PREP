@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class Ways_To_Express_An_Integer_As_Sum_Of_Powers_2787 {
 
+
+    //Can be solved using Knapsack because we have to find number of ways
+
     public int numberOfWays(int n, int x) {
         for(int[] a : memo){
             Arrays.fill(a,-1);
