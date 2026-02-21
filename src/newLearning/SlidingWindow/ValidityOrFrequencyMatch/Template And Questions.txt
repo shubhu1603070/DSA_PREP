@@ -1,0 +1,31 @@
+✔ anagram
+✔ permutation
+✔ frequency constraint
+✔ replace at most k
+✔ window validity
+✔ count of characters / elements
+✔ binary array with k changes
+
+Template
+
+public List<Integer> findAnagrams(String s, String p) {
+List<Integer> res = new ArrayList<>();
+if (s.length() < p.length()) return res;
+
+int[] need = new int[26];
+for (char c : p.toCharArray()) need[c - 'a']++;
+
+int left = 0, match = 0;
+
+for (int right = 0; right < s.length(); right++) {
+if (--need[s.charAt(right) - 'a'] >= 0) match++;
+
+if (right - left + 1 > p.length()) {
+if (++need[s.charAt(left++) - 'a'] > 0) match--;
+}
+
+if (match == p.length()) res.add(left);
+}
+
+return res;
+}
