@@ -2,10 +2,10 @@ package newLearning.LeetcodeWeekly;
 
 import java.util.*;
 
-public class Problems_488 {
+public class Feb_488 {
 
   public static void main(String[] args) {
-    Problems_488 p = new Problems_488();
+    Feb_488 p = new Feb_488();
 //        p.dominantIndices(new int[]{5,4,3});
 //        p.dominantIndices(new int[]{4,1,2});
 //        p.countSubarrays(new int[]{1,3,2},4);
