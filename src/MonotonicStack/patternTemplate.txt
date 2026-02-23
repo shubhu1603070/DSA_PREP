@@ -1,0 +1,47 @@
+    //Monotonic Increasing Stack
+    private void monoTonicIncreasingStack(int[] nums){
+        Stack<Integer> stack = new Stack<>();
+
+        //NSR
+        for(int i = 0;i<nums.length;i++){
+            while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) stack.pop();
+            stack.push(i);
+        }
+        System.out.println(stack);
+
+
+        //NSL
+        for(int i = nums.length-1;i>=0;i--){
+            while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) stack.pop();
+            stack.push(i);
+        }
+        System.out.println(stack);
+    }
+
+    //Monotonic Decreasing Stack
+    private void monoTonicDecreasingStack(int[] nums){
+        //NGR
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0;i<nums.length;i++){
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) stack.pop();
+            stack.push(i);
+        }
+        System.out.println(stack);
+
+        //NGL
+        for(int i = nums.length-1;i>=0;i--){
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) stack.pop();
+            stack.push(i);
+        }
+        System.out.println(stack);
+    }
+
+
+    //Problems
+    v-imp questions they all are variations
+    https://leetcode.com/problems/next-greater-element-i/description/
+    https://leetcode.com/problems/next-greater-element-ii/description/
+    https://leetcode.com/problems/next-greater-element-iii/description/
+    search for this class : NextSmallestPalindrome_High_SUBS.java -> Asked in many interviews class in this project it's hard problem but same like https://leetcode.com/problems/next-greater-element-iii/description/
+
+
