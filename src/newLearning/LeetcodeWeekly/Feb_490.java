@@ -1,7 +1,7 @@
 package newLearning.LeetcodeWeekly;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.*;
 
 public class Feb_490 {
 
@@ -17,9 +17,13 @@ public class Feb_490 {
 //    System.out.println(isDigitorialPermutation(415));
 
 
-    System.out.println(maximumXor("0110","1110"));
-    System.out.println(maximumXor("10","01"));
-    System.out.println(maximumXor("0101","1001"));
+//    System.out.println(maximumXor("0110","1110"));
+//    System.out.println(maximumXor("10","01"));
+//    System.out.println(maximumXor("0101","1001"));
+
+
+//    System.out.println(countSequences(new int[]{2,3,2},6));
+//    System.out.println(countSequences(new int[]{4,6,3},2));
   }
 
   static public int scoreDifference(int[] nums) {
@@ -78,10 +82,6 @@ public class Feb_490 {
     return result;
   }
 
-  public int countSequences(int[] nums, long k) {
-    return 0;
-  }
-
   static public String maximumXor(String s, String t) {
     StringBuilder stringBuilder = new StringBuilder();
 
@@ -120,5 +120,36 @@ public class Feb_490 {
 
     return stringBuilder.toString();
 
+  }
+
+  static public int countSequences(int[] nums, long k) {
+    Map<String, Integer> memo = new HashMap<>();
+    return solve(nums, k, 0, 1L, 1L, memo);
+  }
+
+  static private int solve(int[] nums, long k, int index,int den,int num,int[][][] dp){
+    if(index >= nums.length){
+      return (den / num == k) ?  1 : 0;
+    }
+    if(dp[index][num][den] != -1) return dp[index][num][den];
+    return dp[index][num][den] = solve(nums,k,index+1,den,num,dp) + solve(nums,k,index+1,den,num * nums[index],dp) + solve(nums,k,index+1,den * nums[index],num,dp);
+  }
+
+  static private int solve(int[] nums, long k, int index, long den, long num, Map<String, Integer> memo) {
+    if (index >= nums.length) {
+      return (den == k * num) ? 1 : 0;
+    }
+
+    String state = index + "," + den + "," + num;
+    if (memo.containsKey(state)) return memo.get(state);
+
+    int res = solve(nums, k, index + 1, den, num, memo);
+
+    res += solve(nums, k, index + 1, den, num * nums[index], memo);
+
+    res += solve(nums, k, index + 1, den * nums[index], num, memo);
+
+    memo.put(state, res);
+    return res;
   }
 }
